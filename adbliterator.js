@@ -27,7 +27,7 @@ chrome.storage.local.get(null, async (config) => {
     
             if (voiceSearch !== null) voiceSearch.remove(); // Removes youtubes Voice Search feature no one uses.
             if (fuckPremium !== null) fuckPremium.remove(); // Removes premium element.
-            if (banner !== null) banner.remove(); // idk lol, what banner? ig u do this comment
+            if (banner !== null) banner.remove(); // Removes yt banner at top of home page.
         }
 
         var inputElement = document.querySelector('#search-input input');
