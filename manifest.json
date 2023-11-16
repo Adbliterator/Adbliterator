@@ -3,7 +3,7 @@
     "version": "1.0.5",
     "description": "Removes All Ads From YouTube and YouTube Music, Also Removes Youtube Premium Prompts and Buy Pages",
     "manifest_version": 3,
-    "author": "Segations, RareHyperionYT",
+    "author": "Segations, RareHyperionYT, Jass",
     "content_scripts": [
         {
             "matches": [
