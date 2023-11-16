@@ -1,2 +1,15 @@
+
 # Adbliterator
-Adbliterator is a bypassing adblock for yt and later on more popular services
+
+Adbliterator is a opensource adblock for multiple services
+
+
+
+## ChangeLogs
+
+```text
+16/11/2023
+- Cleaned up code
+- Removed The remove yt premium
+- New yt video ad bypass
+```
