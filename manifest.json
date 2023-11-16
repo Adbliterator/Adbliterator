@@ -1,0 +1,30 @@
+{
+    "name": "Adbliterator - Dev Build",
+    "version": "2.1.5",
+    "description": "Removes All Ads From YouTube and YouTube Music, Also Removes Youtube Premium Prompts and Buy Pages",
+    "manifest_version": 3,
+    "author": "Segations",
+    "content_scripts": [
+        {
+            "matches": [
+                "*://*.youtube.com/*"
+            ],
+            "js": [
+                "adbliterator.js"
+            ],
+            "all_frames": true
+        }
+    ],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "permissions": [
+        "storage"
+    ],
+    "action": {
+        "default_title": "Adbliterator",
+        "default_popup": "popup/popup.html"
+    }
+   
+    
+}
