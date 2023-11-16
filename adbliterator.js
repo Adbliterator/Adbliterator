@@ -59,7 +59,7 @@ chrome.storage.local.get(null, async (config) => {
                 if (sideAd !== undefined && sideAd !== null) sideAd.remove(); // Loops through all side ads it finds and removes them from the page.
             });
             
-            var closeAbleAds = document.getElementsByClassName("ytp-ad-overlay-close-button")[0];
+            var closeAbleAds = document.getElementsByClassName("ytp-ad-overlay-close-button");
             for(let i = 0; i < closeAbleAds.length; i++){
                 closeAbleAds[i].click();
             }
