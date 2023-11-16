@@ -27,7 +27,7 @@ chrome.storage.local.get(null, async (config) => {
     
             if (voiceSearch !== null) voiceSearch.remove(); // Removes youtubes Voice Search feature no one uses.
             if (fuckPremium !== null) fuckPremium.remove(); // Removes premium element.
-            if (banner !== null) banner.remove(); // Removes yt banner at top of home page.
+            if (banner !== null) banner.remove(); // idk lol, what banner? ig u do this comment
         }
 
         var inputElement = document.querySelector('#search-input input');
@@ -40,7 +40,6 @@ chrome.storage.local.get(null, async (config) => {
         if(video !== undefined && config['allowytads-enabled'] === false) {
             var ad = getElementsCN("video-ads ytp-ad-module"); 
             var sideAds = getSideAds();
-            var closeAbleAds = getElementsCN("ytp-ad-overlay-close-button");
             var skipButton = getElementsCN("ytp-ad-text ytp-ad-skip-button-text");
             var incomingAd = getElementsCN("ytp-ad-message-container");
             var popup = document.getElementById("style-scope ytd-popup-container");
@@ -60,8 +59,10 @@ chrome.storage.local.get(null, async (config) => {
                 if (sideAd !== undefined && sideAd !== null) sideAd.remove(); // Loops through all side ads it finds and removes them from the page.
             });
             
-
-            for(let i = 0; i < closeAbleAds.length; i++) closeAbleAds[i].click();
+            var closeAbleAds = document.getElementsByClassName("ytp-ad-overlay-close-button")[0];
+            for(let i = 0; i < closeAbleAds.length; i++){
+                closeAbleAds[i].click();
+            }
 
             if(skipButton !== undefined) skipButton.click(); // Finds the skip button and clicks it if it exists
             if(incomingAd !== undefined) incomingAd.remove() // Removes YT Ad message Container
