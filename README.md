@@ -8,7 +8,8 @@ Adbliterator is a opensource adblock for multiple services
 ## ChangeLogs
 
 ```text
-- Updated detections for new YT Ads
-- Added BETA config system
-- Cleaned up the code just a bit
+16/11/2023
+- Cleaned up code
+- Removed The remove yt premium
+- New yt video ad bypass
 ```
