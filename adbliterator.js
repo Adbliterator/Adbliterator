@@ -31,7 +31,7 @@ chrome.storage.local.get(null, async (config) => {
         }
 
         var inputElement = document.querySelector('#search-input input');
-        if(inputElement !== null) inputElement.setAttribute('placeholder', 'Search (Adbliterator V1.0.5 by the adblit Team)');
+        if(inputElement !== null) inputElement.setAttribute('placeholder', 'Search (Adbliterator V1.0.6 by the adblit Team)');
         
         
 
