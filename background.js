@@ -7,7 +7,7 @@ else runtime = browser.runtime;
 
 const defaultSettings = {
     'uselessytfeatures-enabled': true,
-    'allowytads-enabled': false,
+    'adblock-enabled': true,
 }
 
 chrome.action.onClicked.addListener(() => {

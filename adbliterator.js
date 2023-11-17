@@ -38,7 +38,7 @@ chrome.storage.local.get(null, async (config) => {
 
         var video = getElementsCN("video-stream html5-main-video");
 
-        if(video !== undefined && config['allowytads-enabled'] === false) {
+        if(video !== undefined && config['adblock-enabled'] === true) {
             var ad = getElementsCN("video-ads ytp-ad-module"); 
             var sideAds = getSideAds();
             var skipButton = getElementsCN("ytp-ad-text ytp-ad-skip-button-text");
