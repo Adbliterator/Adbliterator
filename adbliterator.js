@@ -19,6 +19,7 @@ chrome.storage.local.get(null, async (config) => {
         return [sideAd1, sideAd2, newSideAd1, newSideAd2];
     }
 
+    let playbackRate = 1;
     setInterval(() => {
         if(config['uselessytfeatures-enabled'] === true) {
             var voiceSearch = document.getElementById("voice-search-button");
@@ -31,7 +32,7 @@ chrome.storage.local.get(null, async (config) => {
         }
 
         var inputElement = document.querySelector('#search-input input');
-        if(inputElement !== null) inputElement.setAttribute('placeholder', 'Search (Adbliterator V1.0.6 by the adblit Team)');
+        if(inputElement !== null) inputElement.setAttribute('placeholder', 'Search (Adbliterator V1.0.7 by the adblit Team)');
         
         
 
@@ -47,7 +48,9 @@ chrome.storage.local.get(null, async (config) => {
             var companion = getElementsCN("style-scope ytd-companion-slot-renderer");
             var merch = getElementsCN("style-scope ytd-merch-shelf-renderer");
             var homeButton = document.querySelector('.title.style-scope.ytd-guide-entry-renderer');
-            
+            var adtext = getElementsCN('ytp-ad-text'); 
+
+
             // Sets video timestamp to end of video if there is an ad playing.
             if(ad == undefined) {
                 playbackRate = video.playbackRate;
