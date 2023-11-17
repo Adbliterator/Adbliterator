@@ -19,6 +19,7 @@ chrome.storage.local.get(null, async (config) => {
         return [sideAd1, sideAd2, newSideAd1, newSideAd2];
     }
 
+    let playbackRate = 1;
     setInterval(() => {
         if(config['uselessytfeatures-enabled'] === true) {
             var voiceSearch = document.getElementById("voice-search-button");
@@ -31,7 +32,7 @@ chrome.storage.local.get(null, async (config) => {
         }
 
         var inputElement = document.querySelector('#search-input input');
-        if(inputElement !== null) inputElement.setAttribute('placeholder', 'Search (Adbliterator V1.0.5 by the adblit Team)');
+        if(inputElement !== null) inputElement.setAttribute('placeholder', 'Search (Adbliterator V1.0.7 by the adblit Team)');
         
         
 
@@ -47,12 +48,29 @@ chrome.storage.local.get(null, async (config) => {
             var companion = getElementsCN("style-scope ytd-companion-slot-renderer");
             var merch = getElementsCN("style-scope ytd-merch-shelf-renderer");
             var homeButton = document.querySelector('.title.style-scope.ytd-guide-entry-renderer');
-            
+            var adtext = getElementsCN('ytp-ad-text'); 
+
+
             // Sets video timestamp to end of video if there is an ad playing.
-            if(ad !== undefined && ad.children.length > 0){
-                var adtext = getElementsCN('ytp-ad-text');
-                if(adtext && Number.isFinite(video.duration)) video.currenttime = video.duration - 0.5; // set to (duration - 0.5) to bypass the yt detection system
-            } 
+            if(ad == undefined) {
+                playbackRate = video.playbackRate;
+            } else {
+                if (ad.children.length > 0) {
+                    var adtext = document.getElementsByClassName('ytp-ad-text')[0];
+
+                    if(adtext) {
+                        if(Number.isFinite(video.duration)) {
+                            video.currentTime = video.duration - 0.5;
+                            console.log('[Adbliterator]: SKipped with Timestamp.')
+                        }
+
+                        video.playbackRate = 16;
+                        video.volume = 0;
+                        video.style.dispay = 'none';
+                        console.log('[Adbliterator]: Skipping ad...');
+                    }
+                }
+            }
             
 
             sideAds.forEach((sideAd) => {
