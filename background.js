@@ -7,7 +7,8 @@ else runtime = browser.runtime;
 
 const defaultSettings = {
     'uselessytfeatures-enabled': true,
-    'allowytads-enabled': false,
+    'adblock-enabled': true,
+    'blocked-youtube-ads': 0,
 }
 
 chrome.action.onClicked.addListener(() => {

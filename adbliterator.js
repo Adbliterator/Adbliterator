@@ -19,26 +19,21 @@ chrome.storage.local.get(null, async (config) => {
         return [sideAd1, sideAd2, newSideAd1, newSideAd2];
     }
 
-    let playbackRate = 1;
     setInterval(() => {
         if(config['uselessytfeatures-enabled'] === true) {
             var voiceSearch = document.getElementById("voice-search-button");
-            var fuckPremium = document.querySelector('a[href="/paid_memberships?ybp=mAEK"]');
             var banner = document.getElementById("big-yoodle");
     
-            if (voiceSearch !== null) voiceSearch.remove(); // Removes youtubes Voice Search feature no one uses.
-            if (fuckPremium !== null) fuckPremium.remove(); // Removes premium element.
-            if (banner !== null) banner.remove(); // idk lol, what banner? ig u do this comment
+            voiceSearch?.remove(); // Removes youtubes Voice Search feature no one uses.
+            banner?.remove();
         }
 
         var inputElement = document.querySelector('#search-input input');
-        if(inputElement !== null) inputElement.setAttribute('placeholder', 'Search (Adbliterator V1.0.7 by the adblit Team)');
+        inputElement?.setAttribute('placeholder', 'Search (Adbliterator V1.0.7 by the adblit Team)');
         
-        
-
         var video = getElementsCN("video-stream html5-main-video");
 
-        if(video !== undefined && config['allowytads-enabled'] === false) {
+        if(video !== undefined && config['adblock-enabled'] === true) {
             var ad = getElementsCN("video-ads ytp-ad-module"); 
             var sideAds = getSideAds();
             var skipButton = getElementsCN("ytp-ad-text ytp-ad-skip-button-text");
@@ -47,34 +42,30 @@ chrome.storage.local.get(null, async (config) => {
             var slotRemove = getElementsCN("style-scope ytd-ad-slot-renderer");
             var companion = getElementsCN("style-scope ytd-companion-slot-renderer");
             var merch = getElementsCN("style-scope ytd-merch-shelf-renderer");
-            var homeButton = document.querySelector('.title.style-scope.ytd-guide-entry-renderer');
-            var adtext = getElementsCN('ytp-ad-text'); 
+            var skipButton = getElementsCN("ytp-ad-text ytp-ad-skip-button-text");
 
+            if(ad && ad.children.length > 0) {
+                if(Number.isFinite(video.duration) && video.currentTime < (video.duration - 0.5)) {
+                    video.currentTime = video.duration - 0.5;
 
-            // Sets video timestamp to end of video if there is an ad playing.
-            if(ad == undefined) {
-                playbackRate = video.playbackRate;
-            } else {
-                if (ad.children.length > 0) {
-                    var adtext = document.getElementsByClassName('ytp-ad-text')[0];
-
-                    if(adtext) {
-                        if(Number.isFinite(video.duration)) {
-                            video.currentTime = video.duration - 0.5;
-                            console.log('[Adbliterator]: SKipped with Timestamp.')
-                        }
-
-                        video.playbackRate = 16;
-                        video.volume = 0;
-                        video.style.dispay = 'none';
-                        console.log('[Adbliterator]: Skipping ad...');
-                    }
+                    chrome.storage.local.get('blocked-youtube-ads', (data) => {
+                        var current_blocked_ads =  data['blocked-youtube-ads'] || 0
+                        chrome.storage.local.set({ 'blocked-youtube-ads': current_blocked_ads + 1 })
+                    });
                 }
+
+                video.playbackRate = 16;
+                video.volume = 0;
+                skipButton?.click();
+                console.log('[Adblock]: Skipped ad.');
+
+                /*for(let i = 0; i < ad.children.length; i++) {
+                    ad.children[i].remove(); // Doesn't seem to get detected, needs further testing though.
+                }*/
             }
-            
 
             sideAds.forEach((sideAd) => {
-                if (sideAd !== undefined && sideAd !== null) sideAd.remove(); // Loops through all side ads it finds and removes them from the page.
+                sideAd?.remove(); // Loops through all side ads it finds and removes them from the page.
             });
             
             var closeAbleAds = document.getElementsByClassName("ytp-ad-overlay-close-button");
@@ -82,13 +73,14 @@ chrome.storage.local.get(null, async (config) => {
                 closeAbleAds[i].click();
             }
 
-            if(skipButton !== undefined) skipButton.click(); // Finds the skip button and clicks it if it exists
-            if(incomingAd !== undefined) incomingAd.remove() // Removes YT Ad message Container
-            if(popup !== null) popup.remove(); // stops the popup from appearing
-            if(slotRemove !== undefined) slotRemove.remove(); // Removes the ad slot
-            if(companion !== undefined) companion.remove(); // Removes the companion
-            if(merch !== undefined) merch.remove(); // Removes the merch from videos
-            if(homeButton !== null) homeButton.textContent = 'Adbliterator Online!'; // Useless imma be honest -> Ueseles but I like it. fair enough
+            incomingAd?.remove() // Removes YT Ad message Container
+            popup?.remove(); // stops the popup from appearing
+            slotRemove?.remove(); // Removes the ad slot
+            companion?.remove(); // Removes the companion
+            merch?.remove(); // Removes the merch from videos
+
+            //var homeButton = document.querySelector('.title.style-scope.ytd-guide-entry-renderer');
+            //homeButton?.textContent = 'Adbliterator Online!';
         }
     }, 100);
 });

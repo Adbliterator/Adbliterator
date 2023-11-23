@@ -19,10 +19,13 @@ function switchTab(tabName) {
     }
 
     button.classList.add("active");
-
 }
 
-switchTab("general")
+function loadStatistics() {
+    chrome.storage.local.get(null, (data) => {
+        document.getElementById('blocked-youtube').innerText = data['blocked-youtube-ads'] || 0;
+    });
+}
 
 tabs.forEach((button) => {
     var tab_name = button.getAttribute("tab");
@@ -33,7 +36,9 @@ tabs.forEach((button) => {
         });
     }
 });
-  
+
+switchTab("general")
+loadStatistics();
 
 const features = document.querySelectorAll('#features input[type="checkbox"]');
 

@@ -10,6 +10,7 @@ body {
         /* DEFAULT OS UI      iOS / Mac      Windows   Android     Basic Web Fallback           Linux                    Fallback             Emoji Fonts  */
     font-family: system-ui, -apple-system, 'Segoe UI', Roboto, "Helvetica Neue", Arial, "Noto Sans", 'Liberation Sans', sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     overflow: hidden;
+    font-size: 1rem;
 }
 
 body {
@@ -19,7 +20,6 @@ body {
     margin: 0;
     color: white;
 }
-Adbliterator
 
 #sidebar h1 {
     padding: 5px 0 3px 0;
@@ -219,4 +219,42 @@ Adbliterator
     50% {
     transform: scale(0.9);
     }
+}
+
+/* Credits Tab / Information Tab */
+.credits-list, .statistics {
+    margin-left: 20px;
+    list-style: none;
+    padding: 0;
+}
+
+.credits-list li, .statistics li {
+    margin-bottom: 10px;
+}
+
+.credit-name, .statistic-name {
+    font-weight: bold;
+}
+
+.credit-role::before {
+    content: '- ';
+}
+
+.credit-role, .statistic-value {
+    color: #c4c4c4;
+}
+
+/* Tab CSS */
+.section {
+    padding: 0 0 20px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.section:not(:first-child) {
+    margin-top: 20px;
+}
+
+
+.section .title {
+    font-size: 32px;
 }
