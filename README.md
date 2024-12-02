@@ -3,7 +3,9 @@
 
 Adbliterator is a opensource adblock for multiple services
 
+##
 
+Archived repository due to team disbanded.
 
 ## ChangeLogs
 
